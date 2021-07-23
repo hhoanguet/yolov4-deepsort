@@ -217,7 +217,9 @@ def main(_argv):
         # if enable info flag then print details about each track
             if FLAGS.info:
                 print("Tracker ID: {}, Class: {},  BBox Coords (xmin, ymin, xmax, ymax): {}".format(str(track.track_id), class_name, (int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3]))))
-
+                f = open("outputs/output.txt", 'a')
+                f.write(str(frame_num) + ',' + str(track.track_id) + ',' + str(bbox[0]) + ',' + str(bbox[1]) + ',' + str(bbox[2])+ ',' + str(bbox[3])+ '\n')
+                f.close()
         # calculate frames per second of running detections
         fps = 1.0 / (time.time() - start_time)
         print("FPS: %.2f" % fps)
